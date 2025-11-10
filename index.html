@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiFashionEcomm - Men's Clothing</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Simple fade-in animation for page sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+
+        /* Custom scrollbar (optional, but nice) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F39C12; /* Logo Orange */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e68a00;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Using the orange from your logo as 'primary'
+                        'primary': '#F39C12',
+                        'primary-dark': '#e68a00',
+                        'secondary': '#333333', // A dark gray for text
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex-shrink-0 flex items-center nav-link" data-page="home">
+                    <img class="h-10 w-auto" src="logo.png" alt="DigiFashionEcomm Logo">
+                </a>
+                
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors duration-300 nav-link" data-page="home">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors duration-300 nav-link" data-page="products">Products</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors duration-300 nav-link" data-page="contact">Contact Us</a>
+                    <a href="#" class="relative flex items-center text-gray-700 hover:text-primary transition-colors duration-300 nav-link" data-page="cart">
+                        <i data-feather="shopping-cart"></i>
+                        <span id="cart-count-bubble" class="absolute -top-2 -right-3 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                </div>
+                
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary nav-link" data-page="home">Home</a>
+            <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary nav-link" data-page="products">Products</a>
+            <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary nav-link" data-page="contact">Contact Us</a>
+            <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary nav-link" data-page="cart">
+                Cart (<span id="mobile-cart-count">0</span>)
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <section id="home-section" class="page-section active">
+            <div class="relative bg-gray-900 rounded-lg shadow-xl overflow-hidden mb-12" style="height: 60vh;">
+                <img src="https://placehold.co/1600x900/333333/FFFFFF?text=Welcome+to+DigiFashion" alt="Fashion Banner" class="absolute inset-0 w-full h-full object-cover opacity-50">
+                <div class="relative h-full flex flex-col justify-center items-center text-center px-6">
+                    
+                    
+                   
+                </div>
+            </div>
+
+            <div id="about-us" class="bg-white p-8 sm:p-12 rounded-lg shadow-lg mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-secondary mb-4">About DigiFashionEcomm</h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Welcome to DigiFashionEcomm, your new destination for premium men's clothing. We were founded on the simple idea that dressing well shouldn't be complicated. Our mission is to provide high-quality, stylish, and comfortable apparel that fits the modern man's lifestyle.
+                        </p>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            From sharp shirts for the office to relaxed t-shirts for the weekend, and from perfectly-fitted jeans to comfortable pants, we've curated a collection that covers all your needs. We believe in quality materials, great fits, and timeless designs.
+                        </p>
+                        <a href="#" class="text-primary font-semibold hover:text-primary-dark transition-colors duration-300 nav-link" data-page="contact">
+                            Get in Touch &rarr;
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl font-bold text-center text-secondary mb-8">Featured Products</h2>
+                <div id="featured-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    </div>
+            </div>
+        </section>
+
+        <section id="products-section" class="page-section">
+            <h1 class="text-4xl font-bold text-secondary mb-8 text-center">All Products</h1>
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                </div>
+        </section>
+
+        <section id="cart-section" class="page-section">
+            <h1 class="text-4xl font-bold text-secondary mb-8 text-center">Your Shopping Cart</h1>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-semibold text-secondary mb-4">Items</h2>
+                    <div id="cart-items-container">
+                        </div>
+                    <div id="empty-cart-message" class="text-center py-12" style="display: none;">
+                        <i data-feather="shopping-bag" class="h-16 w-16 text-gray-300 mx-auto mb-4"></i>
+                        <p class="text-xl text-gray-500 mb-4">Your cart is empty.</p>
+                        <a href="#" class="bg-primary text-white font-semibold px-6 py-2 rounded-lg hover:bg-primary-dark transition-all duration-300 nav-link" data-page="products">
+                            Start Shopping
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg h-fit sticky top-28">
+                    <h2 class="text-2xl font-semibold text-secondary mb-4 border-b pb-3">Order Summary</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-lg">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span id="cart-subtotal" class="font-semibold text-secondary">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between text-lg">
+                            <span class="text-gray-600">Shipping</span>
+                            <span class="font-semibold text-secondary">Free</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-bold text-secondary border-t pt-3 mt-3">
+                            <span>Total</span>
+                            <span id="cart-total" class="text-primary">₹0.00</span>
+                        </div>
+                    </div>
+                    <button id="buy-now-button" class="w-full bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-all duration-300 shadow-lg transform hover:scale-105 mt-6 disabled:opacity-50" disabled>
+                        Proceed to Buy
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="page-section">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl font-bold text-secondary mb-8 text-center">Contact Us</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-secondary mb-6">Send Us a Message</h2>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="contact-name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="contact-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-gray-700 font-medium mb-2">Your Email</label>
+                                <input type="email" id="contact-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            </div>
+                            <div>
+                                <label for="contact-message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="contact-message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-all duration-300 shadow-lg transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-secondary mb-6">Our Information</h2>
+                        <ul class="space-y-6">
+                            <li class="flex items-start">
+                                <i data-feather="map-pin" class="h-6 w-6 mr-4 text-primary flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-secondary">Address</h3>
+                                    <p class="text-gray-600">UG-9 Anna Ikkon Complex, Bodla Road, Sikandra, Agra, Uttar Pradesh <br>India, 282007</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="phone" class="h-6 w-6 mr-4 text-primary flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-secondary">Phone</h3>
+                                    <a href="tel:+12125551234" class="text-gray-600 hover:text-primary">+91 8868940533</a>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="mail" class="h-6 w-6 mr-4 text-primary flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-secondary">Email</h3>
+                                    <a href="mailto:support@digifashion.com" class="text-gray-600 hover:text-primary">Digifashionecommerce@gmail.com</a>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="clock" class="h-6 w-6 mr-4 text-primary flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-secondary">Hours</h3>
+                                    <p class="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                    <p class="text-gray-600">Sat - Sun: Closed</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cancellation-section" class="page-section">
+            <div class="bg-white p-8 sm:p-12 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <h1 class="text-4xl font-bold text-secondary mb-8 text-center">Cancellation Policy</h1>
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p>At DigiFashionEcomm, we strive to process orders quickly. If you need to cancel an order, please contact us as soon as possible.</p>
+                    
+                    <h2 class="text-2xl font-semibold text-secondary mt-4">Timeframe for Cancellation</h2>
+                    <p><strong>Before Shipping:</strong> You can cancel your order for a full refund at any time before it has been shipped. Please check your order status on your account page or contact our support team at <a href="mailto:support@digifashion.com" class="text-primary hover:underline">Digifashionecommerce@gmail.com</a>.</p>
+                    
+                    <h2 class="text-2xl font-semibold text-secondary mt-4">How to Cancel</h2>
+                    <p>To cancel an order, please go to your 'My Orders' page (once available) and select the 'Cancel Order' option. If the option is not available, it means your order is already being processed for shipping. In this case, please contact us immediately.</p>
+                    
+                    <h2 class="text-2xl font-semibold text-secondary mt-4">After Shipping</h2>
+                    <p>If your order has already been shipped, it cannot be canceled. However, you can return the order once it is delivered. Please refer to our Return Policy (once available) for details on how to return an item.</p>
+                    
+                    <h2 class="text-2xl font-semibold text-secondary mt-4">Refunds</h2>
+                    <p>All refunds for canceled orders will be processed to the original form of payment within 5-7 business days. If you paid via QR code/UPI, the refund will be credited back to the source account.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div id="toast-notification" class="fixed bottom-10 right-10 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-xl transition-all duration-300 transform translate-y-20 opacity-0">
+            Item added to cart!
+        </div>
+
+    </main>
+
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-xl max-w-lg w-full relative">
+            <button id="close-modal-button" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i data-feather="x" class="h-6 w-6"></i>
+            </button>
+            
+            <h2 class="text-2xl font-bold text-secondary mb-6">Shipping Details</h2>
+            
+            <form id="checkout-form" class="space-y-4">
+                <div>
+                    <label for="checkout-name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                    <input type="text" id="checkout-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                    <p id="name-error" class="text-red-500 text-sm mt-1 hidden">Full name is required.</p>
+                </div>
+                
+                <div>
+                    <label for="checkout-address" class="block text-gray-700 font-medium mb-2">Street Address</label>
+                    <input type="text" id="checkout-address" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                    <p id="address-error" class="text-red-500 text-sm mt-1 hidden">Street address is required.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="sm:col-span-2">
+                        <label for="checkout-city" class="block text-gray-700 font-medium mb-2">City</label>
+                        <input type="text" id="checkout-city" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        <p id="city-error" class="text-red-500 text-sm mt-1 hidden">City is required.</p>
+                    </div>
+                    <div>
+                        <label for="checkout-zip" class="block text-gray-700 font-medium mb-2">PIN Code</label>
+                        <input type="text" id="checkout-zip" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        <p id="zip-error" class="text-red-500 text-sm mt-1 hidden">A valid 6-digit PIN code is required.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="checkout-state" class="block text-gray-700 font-medium mb-2">State</label>
+                    <input type="text" id="checkout-state" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                    <p id="state-error" class="text-red-500 text-sm mt-1 hidden">State is required.</p>
+                </div>
+
+                <p id="api-error" class="text-red-500 text-sm text-center hidden">Address validation failed. Please check your details.</p>
+
+                <button id="place-order-button" class="w-full bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-all duration-300 shadow-lg transform hover:scale-105 mt-6 disabled:opacity-50 disabled:cursor-wait">
+                    Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-xl max-w-md w-full text-center">
+            <h2 class="text-2xl font-bold text-secondary mb-4">Complete Your Payment</h2>
+            <p class="text-gray-600 mb-4">Scan the QR code below to pay. This request will expire in:</p>
+            
+            <div id="payment-timer" class="text-4xl font-bold text-primary mb-4">02:00</div>
+            
+            <div class="flex justify-center mb-4">
+                <img id="qr-code-image" src="" alt="Payment QR Code" class="w-52 h-52 rounded-lg bg-gray-100">
+            </div>
+            
+            <p class="text-lg font-semibold text-secondary mb-6">
+                Amount to Pay: <span id="payment-amount-display" class="text-primary">₹0.00</span>
+            </p>
+            
+            <div class="space-y-3">
+                <button id="payment-complete-button" class="w-full bg-green-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-green-700 transition-all duration-300 shadow-lg">
+                    I Have Paid
+                </button>
+                <button id="payment-cancel-button" class="w-full bg-gray-200 text-gray-700 font-medium px-6 py-2 rounded-lg hover:bg-gray-300 transition-all duration-300">
+                    Cancel Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-secondary text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="logo.png" alt="DigiFashionEcomm Logo" class="h-10 w-auto mb-4 bg-white p-1 rounded-md">
+                    <p class="mb-4">High-quality, stylish, and comfortable apparel for the modern man.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300 nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300 nav-link" data-page="products">Products</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300" data-page="home" data-scrollto="about-us">About Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300 nav-link" data-page="cart">Your Cart</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300 nav-link" data-page="cancellation">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="h-5 w-5 mr-3 mt-1 flex-shrink-0"></i>
+                            <span>UG-9 Anna Ikkon Complex, bodla Road, Sikandra, Agra Uttar Pradesh<br>India , 282007</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="h-5 w-5 mr-3"></i>
+                            <a href="tel:+12125551234" class="hover:text-primary">+91 8868940533</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="h-5 w-5 mr-3"></i>
+                            <a href="mailto:support@digifashion.com" class="hover:text-primary">Digifashionecommerce@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-700 hover:bg-primary text-white p-2 rounded-full transition-colors duration-300"><i data-feather="facebook"></i></a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary text-white p-2 rounded-full transition-colors duration-300"><i data-feather="instagram"></i></a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary text-white p-2 rounded-full transition-colors duration-300"><i data-feather="twitter"></i></a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary text-white p-2 rounded-full transition-colors duration-300"><i data-feather="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                &copy; <span id="current-year"></span> DigiFashionEcomm. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- STATE ---
+            let cart = []; // Array to hold { id, name, price, imageUrl, quantity }
+
+            // =================================================================
+            // === API KEY CHANGED ===
+            // Removed Radar API Key
+            // Added MapmyIndia API Key Placeholder
+            //
+            // 🔴 IMPORTANT: Replace 'YOUR_MAPMYINDIA_API_KEY' with your actual key
+            // You can get one from https://www.mapmyindia.com/api/
+            // =================================================================
+            const MAPMYINDIA_API_KEY = 'YOUR_MAPMYINDIA_API_KEY'; // <-- IMPORTANT: Replace with your actual key!
+            
+            // --- MOCK PRODUCT DATA (Prices updated to INR) ---
+            const products = [
+                // --- CATEGORY 1: Shirts (25 items) ---
+                { id: 1, name: 'Classic Oxford Shirt', category: 'Shirts', price: 1499, imageUrl:'shirt1.jpeg'},
+                { id: 2, name: 'Linen Button-Down', category: 'Shirts', price: 1599, imageUrl: 'shirt2.jpeg' },
+                { id: 3, name: 'Flannel Plaid Shirt', category: 'Shirts', price: 1299, imageUrl: 'shirt3.jpeg' },
+                { id: 4, name: 'Short-Sleeve Denim Shirt', category: 'Shirts', price: 1399, imageUrl: 'shirt4.jpeg' },
+                { id: 5, name: 'Slim-Fit Poplin Shirt', category: 'Shirts', price: 1199, imageUrl: 'shirt5.jpeg' },
+                { id: 6, name: 'Casual Striped Shirt', category: 'Shirts', price: 1299, imageUrl: 'shirt6.jpeg' },
+                { id: 7, name: 'Corduroy Overshirt', category: 'Shirts', price: 1999, imageUrl: 'shirt7.jpeg' },
+                { id: 8, name: 'Formal White Shirt', category: 'Shirts', price: 1799, imageUrl: 'shirt8.jpeg' },
+                { id: 9, name: 'Business Blue Shirt', category: 'Shirts', price: 1799, imageUrl: 'shirt9.jpeg' },
+                { id: 10, name: 'Checkered Casual Shirt', category: 'Shirts', price: 1399, imageUrl: 'shirt10.jpeg' },
+                { id: 11, name: 'Short-Sleeve Printed Shirt', category: 'Shirts', price: 1499, imageUrl: 'shirt11.jpeg' },
+                { id: 12, name: 'Half-Sleeve Linen Shirt', category: 'Shirts', price: 1499, imageUrl: 'shirt12.jpeg' },
+                { id: 13, name: 'Mandarin Collar Shirt', category: 'Shirts', price: 1699, imageUrl: 'shirt13.jpeg' },
+                { id: 14, name: 'Slim-Fit Stretch Shirt', category: 'Shirts', price: 1899, imageUrl: 'shirt14.jpeg' },
+                { id: 15, name: 'Oversized Flannel Shirt', category: 'Shirts', price: 2199, imageUrl: 'shirt15.jpeg' },
+                { id: 16, name: 'Regular Fit Twill Shirt', category: 'Shirts', price: 1599, imageUrl: 'shirt16.jpeg' },
+                { id: 17, name: 'Cuban Collar Shirt', category: 'Shirts', price: 1799, imageUrl: 'shirt1.jpeg' },
+                { id: 18, name: 'Vertical Stripe Shirt', category: 'Shirts', price: 1399, imageUrl: 'shirt7.jpeg' },
+                { id: 19, name: 'Chambray Shirt', category: 'Shirts', price: 1699, imageUrl: 'shirt8.jpeg' },
+                { id: 20, name: 'Knitted Polo Shirt', category: 'Shirts', price: 1999, imageUrl: 'shirt9.jpeg' },
+                { id: 21, name: 'Satin Luxury Shirt', category: 'Shirts', price: 2499, imageUrl: 'shirt10.jpeg' },
+                { id: 22, name: 'Utility Overshirt', category: 'Shirts', price: 2299, imageUrl: 'shirt14.jpeg' },
+                { id: 23, name: 'Classic Gingham Shirt', category: 'Shirts', price: 1499, imageUrl: 'shirt1.jpeg' },
+                { id: 24, name: 'Band Collar Poplin Shirt', category: 'Shirts', price: 1599, imageUrl: 'shirt2.jpeg' },
+                { id: 25, name: 'Brushed Cotton Shirt', category: 'Shirts', price: 1899, imageUrl: 'shirt3.jpeg' },
+
+                // --- CATEGORY 2: Trousers (25 items, IDs 26-50) ---
+                { id: 26, name: 'Formal Wool Trousers', category: 'Trousers', price: 2999, imageUrl: 'trouser1.jpeg' },
+                { id: 27, name: 'Slim-Fit Business Trousers', category: 'Trousers', price: 2499, imageUrl: 'trouser2.jpeg' },
+                { id: 28, name: 'Checkered Formal Trousers', category: 'Trousers', price: 2799, imageUrl: 'trouser3.jpeg' },
+                { id: 29, name: 'Pleated Trousers (Relaxed)', category: 'Trousers', price: 2299, imageUrl: 'trouser4.jpeg' },
+                { id: 30, name: 'Cropped Trousers', category: 'Trousers', price: 1999, imageUrl: 'trouser5.jpeg' },
+                { id: 31, name: 'Tapered Fit Trousers', category: 'Trousers', price: 2399, imageUrl: 'trouser6.jpeg' },
+                { id: 32, name: 'Regular Fit Trousers', category: 'Trousers', price: 1999, imageUrl: 'trouser7.jpeg' },
+                { id: 33, name: 'Herringbone Trousers', category: 'Trousers', price: 2899, imageUrl: 'trouser8.jpeg' },
+                { id: 34, name: 'Stretch Formal Trousers', category: 'Trousers', price: 2599, imageUrl: 'trouser9.jpeg' },
+                { id: 35, name: 'Pinstripe Trousers', category: 'Trousers', price: 2699, imageUrl: 'trouser10.jpeg' },
+                { id: 36, name: 'High-Waist Trousers', category: 'Trousers', price: 2499, imageUrl: 'trouser11.jpeg' },
+                { id: 37, name: 'Linen Blend Trousers', category: 'Trousers', price: 2299, imageUrl: 'trouser12.jpeg' },
+                { id: 38, name: 'Wide-Leg Trousers', category: 'Trousers', price: 2399, imageUrl: 'trouser13.jpeg' },
+                { id: 39, name: 'Tuxedo Trousers', category: 'Trousers', price: 3499, imageUrl: 'trouser14.jpeg' },
+                { id: 40, name: 'Travel-Fit Tech Trousers', category: 'Trousers', price: 3199, imageUrl: 'trouser1.jpeg' },
+                { id: 41, name: 'Houndstooth Trousers', category: 'Trousers', price: 2799, imageUrl: 'trouser8.jpeg' },
+                { id: 42, name: 'Ankle-Length Trousers', category: 'Trousers', price: 2199, imageUrl: 'trouser6.jpeg' },
+                { id: 43, name: 'Charcoal Grey Trousers', category: 'Trousers', price: 2499, imageUrl: 'trouser4.jpeg' },
+                { id: 44, name: 'Navy Blue Formal Trousers', category: 'Trousers', price: 2499, imageUrl: 'trouser7.jpeg' },
+                { id: 45, name: 'Beige Formal Trousers', category: 'Trousers', price: 2499, imageUrl: 'trouser3.jpeg' },
+                { id: 46, name: 'Slim Tapered Trousers', category: 'Trousers', price: 2599, imageUrl: 'trouser8.jpeg' },
+                { id: 47, name: 'Velvet Evening Trousers', category: 'Trousers', price: 3299, imageUrl: 'trouser2.jpeg' },
+                { id: 48, name: 'Windowpane Check Trousers', category: 'Trousers', price: 2899, imageUrl: 'trouser9.jpeg' },
+                { id: 49, name: 'Cotton-Twill Trousers', category: 'Trousers', price: 2299, imageUrl: 'trouser1.jpeg' },
+                { id: 50, name: 'Side-Stripe Trousers', category: 'Trousers', price: 2699, imageUrl: 'trouser10.jpeg' },
+                
+                // --- CATEGORY 3: Jeans (25 items, IDs 51-75) ---
+                { id: 51, name: 'Classic Straight-Leg Jeans', category: 'Jeans', price: 1999, imageUrl: 'jeans1.jpg' },
+                { id: 52, name: 'Slim-Fit Dark Wash Jeans', category: 'Jeans', price: 2299, imageUrl: 'jeans2.jpg' },
+                { id: 53, name: 'Ripped Skinny Jeans', category: 'Jeans', price: 2499, imageUrl: 'jeans3.jpg' },
+                { id: 54, name: 'Relaxed-Fit Light Wash Jeans', category: 'Jeans', price: 1999, imageUrl: 'jeans4.jpg' },
+                { id: 55, name: 'Black Selvedge Denim', category: 'Jeans', price: 3499, imageUrl: 'jeans5.jpg' },
+                { id: 56, name: 'Tapered Fit Jeans', category: 'Jeans', price: 2199, imageUrl: 'jeans6.jpg' },
+                { id: 57, name: 'Athletic Fit Jeans', category: 'Jeans', price: 2399, imageUrl: 'jeans7.jpg' },
+                { id: 58, name: 'Bootcut Jeans', category: 'Jeans', price: 2099, imageUrl: 'IMG-20251109-WA0034.jpg' },
+                { id: 59, name: 'White Denim Jeans', category: 'Jeans', price: 2299, imageUrl: 'IMG-20251109-WA0035.jpg' },
+                { id: 60, name: 'Grey Washed Jeans', category: 'Jeans', price: 2199, imageUrl: 'IMG-20251109-WA0036.jpg' },
+                { id: 61, name: 'Distressed Slim Jeans', category: 'Jeans', price: 2599, imageUrl: 'IMG-20251109-WA0037.jpg' },
+                { id: 62, name: 'Raw Denim Jeans', category: 'Jeans', price: 3199, imageUrl: 'IMG-20251109-WA0038.jpg' },
+                { id: 63, name: 'Stretch Skinny Jeans', category: 'Jeans', price: 2399, imageUrl: 'IMG-20251109-WA0039.jpg' },
+                { id: 64, name: 'Acid Wash Jeans', category: 'Jeans', price: 2499, imageUrl: 'IMG-20251109-WA0040.jpg' },
+                { id: 65, name: 'Carpenter Jeans', category: 'Jeans', price: 2699, imageUrl: 'IMG-20251109-WA0041.jpg' },
+                { id: 66, name: 'Mid-Wash Straight Jeans', category: 'Jeans', price: 1999, imageUrl: 'IMG-20251109-WA0044.jpg' },
+                { id: 67, name: 'Biker-Style Jeans', category: 'Jeans', price: 2899, imageUrl: 'IMG-20251109-WA0045.jpg' },
+                { id: 68, name: 'Flexible Waist Jeans', category: 'Jeans', price: 2499, imageUrl: 'IMG-20251109-WA0046.jpg' },
+                { id: 69, name: 'Vintage Wash Jeans', category: 'Jeans', price: 2399, imageUrl: 'IMG-20251109-WA0047.jpg' },
+                { id: 70, name: 'Black Coated Jeans', category: 'Jeans', price: 2999, imageUrl: 'IMG-20251109-WA0048.jpg' },
+                { id: 71, name: 'Patchwork Jeans', category: 'Jeans', price: 2799, imageUrl: 'IMG-20251109-WA0049.jpg' },
+                { id: 72, name: 'Cuffed Hem Jeans', category: 'Jeans', price: 2299, imageUrl: 'IMG-20251109-WA0050.jpg' },
+                { id: 73, name: 'Loose Fit Jeans', category: 'Jeans', price: 2199, imageUrl: 'IMG-20251109-WA0051.jpg' },
+                { id: 74, name: 'Faded Black Jeans', category: 'Jeans', price: 2299, imageUrl: 'IMG-20251109-WA0052.jpg' },
+                { id: 75, name: 'Olive Green Denim', category: 'Jeans', price: 2399, imageUrl: 'IMG-20251109-WA0053.jpg' },
+
+                // --- CATEGORY 4: Lowers (25 items, IDs 76-100) ---
+                { id: 76, name: 'Classic Track Pants', category: 'Lowers', price: 1299, imageUrl: 'lower1.jpg' },
+                { id: 77, name: 'Tapered Fit Joggers', category: 'Lowers', price: 1599, imageUrl: 'lower2.jpg' },
+                { id: 78, name: 'Cargo Joggers', category: 'Lowers', price: 1799, imageUrl: 'lower3.jpg' },
+                { id: 79, name: 'Cuffed Gym Lowers', category: 'Lowers', price: 1199, imageUrl: 'lower4.jpg' },
+                { id: 80, name: 'French Terry Lowers', category: 'Lowers', price: 1499, imageUrl: 'lower5.jpg' },
+                { id: 81, name: 'Tech Fleece Joggers', category: 'Lowers', price: 2499, imageUrl: 'lower6.jpg' },
+                { id: 82, name: 'Performance Sport Lowers', category: 'Lowers', price: 1899, imageUrl: 'lower7.jpg' },
+                { id: 83, name: 'Side-Stripe Track Pants', category: 'Lowers', price: 1399, imageUrl: 'lower8.jpg' },
+                { id: 84, name: 'Relaxed Fit Lowers', category: 'Lowers', price: 1099, imageUrl: 'lower9.jpg' },
+                { id: 85, name: 'Knitted Lounge Lowers', category: 'Lowers', price: 1999, imageUrl: 'lower10.jpg' },
+                { id: 86, name: 'Slim-Fit Joggers', category: 'Lowers', price: 1499, imageUrl: 'lower11.jpg' },
+                { id: 87, name: 'Woven Track Pants', category: 'Lowers', price: 1699, imageUrl: 'lower12.jpg' },
+                { id: 88, name: 'Zipper-Pocket Lowers', category: 'Lowers', price: 1799, imageUrl: 'lower13.jpg' },
+                { id: 90, name: 'Basic Cotton Lowers', category: 'Lowers', price: 999, imageUrl: 'lower14.jpg' },
+                { id: 91, name: 'Drawstring Joggers', category: 'Lowers', price: 1599, imageUrl: 'lower15.jpg' },
+                { id: 92, name: 'Reflective Gym Lowers', category: 'Lowers', price: 1999, imageUrl: 'lower16.jpg' },
+                { id: 93, name: 'Panelled Joggers', category: 'Lowers', price: 1799, imageUrl: 'lower17.jpg' },
+                { id: 94, name: 'Fleece-Lined Lowers', category: 'Lowers', price: 1899, imageUrl: 'lower7.jpg' },
+                { id: 95, name: 'Oversized Joggers', category: 'Lowers', price: 1699, imageUrl: 'lower11.jpg' },
+                { id: 96, name: 'Camo Print Joggers', category: 'Lowers', price: 1799, imageUrl: 'lower5.jpg' },
+                { id: 97, name: 'Velour Track Pants', category: 'Lowers', price: 2199, imageUrl: 'lower4.jpg' },
+                { id: 98, name: 'Cropped Joggers', category: 'Lowers', price: 1499, imageUrl: 'lower3.jpg' },
+                { id: 99, name: 'Pintuck Joggers', category: 'Lowers', price: 1799, imageUrl: 'lower2.jpg' },
+                { id: 100, name: 'Utility Pocket Lowers', category: 'Lowers', price: 1899, imageUrl: 'lower1.jpg' },
+                
+                // --- CATEGORY 5: Pants (25 items, IDs 101-125) ---
+                { id: 101, name: 'Slim-Fit Chinos (Beige)', category: 'Pants', price: 1799, imageUrl: 'trouser14.jpeg' },
+                { id: 102, name: 'Cargo Utility Pants', category: 'Pants', price: 2499, imageUrl: 'trouser13.jpeg' },
+                { id: 103, name: '5-Pocket Twill Pants', category: 'Pants', price: 1999, imageUrl: 'trouser12.jpeg' },
+                { id: 104, name: 'Tech Commuter Pants', category: 'Pants', price: 2999, imageUrl: 'trouser11.jpeg' },
+                { id: 105, name: 'Relaxed Fit Corduroys', category: 'Pants', price: 2299, imageUrl: 'trouser10.jpeg' },
+                { id: 106, name: 'Drawstring Linen Pants', category: 'Pants', price: 1899, imageUrl: 'trouser9.jpeg' },
+                { id: 107, name: 'Slim Chinos (Navy)', category: 'Pants', price: 1799, imageUrl: 'trouser1.jpeg' },
+                { id: 108, name: 'Straight Fit Chinos', category: 'Pants', price: 1699, imageUrl: 'trouser6.jpeg' },
+                { id: 109, name: 'Plaid Chino Pants', category: 'Pants', price: 2199, imageUrl: 'trouser7.jpeg' },
+                { id: 110, name: 'Athletic Taper Chinos', category: 'Pants', price: 1999, imageUrl: 'trouser8.jpeg' },
+                { id: 111, name: 'Slim Cargo Pants', category: 'Pants', price: 2599, imageUrl: 'trouser14.jpeg' },
+                { id: 112, name: 'Fleece-Lined Pants', category: 'Pants', price: 2399, imageUrl: 'trouser1.jpeg' },
+                { id: 113, name: 'Elastic Waist Chinos', category: 'Pants', price: 1899, imageUrl: 'trouser2.jpeg' },
+                { id: 114, name: 'Olive Green Chinos', category: 'Pants', price: 1799, imageUrl: 'trouser3.jpeg' },
+                { id: 115, name: 'Black Slim Chinos', category: 'Pants', price: 1799, imageUrl: 'trouser4.jpeg' },
+                { id: 116, name: 'Workwear Utility Pants', category: 'Pants', price: 2699, imageUrl: 'trouser5.jpeg' },
+                { id: 117, 'name': 'Brushed Cotton Pants', 'category': 'Pants', 'price': 2099, 'imageUrl': 'trouser6.jpeg' },
+                { id: 118, 'name': 'Ripstop Cargo Pants', 'category': 'Pants', 'price': 2799, 'imageUrl': 'trouser7.jpeg' },
+                { id: 119, 'name': 'Seersucker Pants', 'category': 'Pants', 'price': 2199, 'imageUrl': 'trouser8.jpeg' },
+                { id: 120, 'name': 'Cropped Chinos', 'category': 'Pants', 'price': 1899, 'imageUrl': 'trouser9.jpeg' },
+                { id: 121, 'name': 'Carpenter Pants', 'category': 'Pants', 'price': 2599, 'imageUrl': 'trouser10.jpeg' },
+                { id: 122, 'name': 'Pleated Chinos', 'category': 'Pants', 'price': 2299, 'imageUrl': 'trouser11.jpeg' },
+                { id: 123, 'name': 'Wool-Blend Pants', 'category': 'Pants', 'price': 3199, 'imageUrl': 'trouser12.jpeg' },
+                { id: 124, 'name': 'Twill Jogger Pants', 'category': 'Pants', 'price': 1999, 'imageUrl': 'trouser13.jpeg' },
+                { id: 125, 'name': 'Herringbone Chinos', 'category': 'Pants', 'price': 2399, 'imageUrl': 'trouser14.jpeg' },
+
+                // --- CATEGORY 6: Tshirt (25 items, IDs 126-150) ---
+                { id: 126, name: 'Premium Cotton Tee', category: 'Tshirt', price: 699, imageUrl: 'IMG-20251109-WA0054.jpg' },
+                { id: 127, name: 'Graphic Print T-Shirt', category: 'Tshirt', price: 799, imageUrl: 'IMG-20251109-WA0055.jpg' },
+                { id: 128, name: 'V-Neck Basic Tee', category: 'Tshirt', price: 499, imageUrl: 'IMG-20251109-WA0056.jpg' },
+                { id: 129, name: 'Henley Long-Sleeve', category: 'Tshirt', price: 899, imageUrl: 'IMG-20251109-WA0057.jpg' },
+                { id: 130, name: 'Pocket T-Shirt', category: 'Tshirt', price: 749, imageUrl: 'IMG-20251109-WA0058.jpg' },
+                { id: 131, name: 'Performance Sport Tee', category: 'Tshirt', price: 999, imageUrl: 'IMG-20251109-WA0059.jpg' },
+                { id: 132, name: 'Striped Crewneck Tee', category: 'Tshirt', price: 799, imageUrl: 'IMG-20251109-WA0060.jpg' },
+                { id: 133, name: 'Classic Polo T-Shirt', category: 'Tshirt', price: 1199, imageUrl: 'IMG-20251109-WA0061.jpg' },
+                { id: 134, name: 'Oversized T-Shirt', category: 'Tshirt', price: 899, imageUrl: 'IMG-20251109-WA0062.jpg' },
+                { id: 135, name: 'Longline T-Shirt', category: 'Tshirt', price: 999, imageUrl: 'IMG-20251109-WA0063.jpg' },
+                { id: 136, name: 'Muscle Fit T-Shirt', category: 'Tshirt', price: 799, imageUrl: 'IMG-20251109-WA0064.jpg' },
+                { id: 137, name: 'Henley Short-Sleeve', category: 'Tshirt', price: 799, imageUrl: 'IMG-20251109-WA0065.jpg' },
+                { id: 138, name: 'Faded Graphic Tee', category: 'Tshirt', price: 899, imageUrl: 'IMG-20251109-WA0066.jpg' },
+                { id: 139, name: 'Supima Cotton Tee', category: 'Tshirt', price: 999, imageUrl: 'IMG-20251109-WA0067.jpg' },
+                { id: 140, name: 'Waffle-Knit Long Sleeve', category: 'Tshirt', price: 1199, imageUrl: 'IMG-20251109-WA0068.jpg' },
+                { id: 141, name: 'Zip-Neck Polo', category: 'Tshirt', price: 1399, imageUrl: 'IMG-20251109-WA0069.jpg' },
+                { id: 142, name: 'Embroidered Logo Tee', category: 'Tshirt', price: 899, imageUrl: 'IMG-20251109-WA0070.jpg' },
+                { id: 143, name: 'Tie-Dye T-Shirt', category: 'Tshirt', price: 999, imageUrl: 'IMG-20251109-WA0071.jpg' },
+                { id: 144, name: 'Ringer T-Shirt', category: 'Tshirt', price: 799, imageUrl: 'IMG-20251109-WA0072.jpg' },
+                { id: 145, name: 'Moisture-Wicking Tee', category: 'Tshirt', price: 1099, imageUrl: 'IMG-20251109-WA0073.jpg' },
+                { id: 146, name: 'Slub Cotton Tee', category: 'Tshirt', price: 899, imageUrl: 'IMG-20251109-WA0075.jpg' },
+                { id: 147, name: 'Vintage Wash Tee', category: 'Tshirt', price: 999, imageUrl: 'IMG-20251109-WA0076.jpg' },
+                { id: 148, name: 'Baseball 3/4 Sleeve', category: 'Tshirt', price: 899, imageUrl: 'IMG-20251109-WA0077.jpg' },
+                { id: 149, name: 'Terry Cloth Polo', category: 'Tshirt', price: 1299, imageUrl: 'IMG-20251109-WA0078.jpg' },
+                { id: 150, name: 'Mock-Neck Long Sleeve', category: 'Tshirt', price: 1099, imageUrl: 'IMG-20251109-WA0035.jpg' }
+            ];
+
+            // --- SELECTORS ---
+            const pageSections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            // *** FIX: These elements now exist in the HTML ***
+            const productsGrid = document.getElementById('products-grid');
+            const featuredProductsGrid = document.getElementById('featured-products-grid');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartCountBubble = document.getElementById('cart-count-bubble');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const cartSubtotalEl = document.getElementById('cart-subtotal');
+            const cartTotalEl = document.getElementById('cart-total');
+            const buyNowButton = document.getElementById('buy-now-button');
+            const toastNotification = document.getElementById('toast-notification');
+            const contactForm = document.getElementById('contact-form');
+            // *** END FIX ***
+
+            // --- NEW SELECTORS for Checkout Modal ---
+            const checkoutModal = document.getElementById('checkout-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const checkoutForm = document.getElementById('checkout-form');
+            const placeOrderButton = document.getElementById('place-order-button');
+            // --- NEW: API Error Selector ---
+            const apiErrorEl = document.getElementById('api-error');
+            // --- END NEW SELECTORS ---
+
+            // --- NEW: Payment Modal Selectors ---
+            const paymentModal = document.getElementById('payment-modal');
+            const paymentTimerEl = document.getElementById('payment-timer');
+            const qrCodeImage = document.getElementById('qr-code-image');
+            const paymentAmountDisplay = document.getElementById('payment-amount-display');
+            const paymentCompleteButton = document.getElementById('payment-complete-button');
+            const paymentCancelButton = document.getElementById('payment-cancel-button');
+            
+            let paymentTimerInterval = null; // To hold the timer
+            // --- END NEW Payment Modal Selectors ---
+
+
+            // --- FUNCTIONS ---
+
+            /**
+             * Shows the specified page and hides others.
+             * @param {string} pageId - The ID of the page to show (e.g., 'home', 'products').
+             */
+            function showPage(pageId) {
+                pageSections.forEach(section => {
+                    if (section.id === `${pageId}-section`) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+                
+                // Close mobile menu on navigation
+                mobileMenu.classList.add('hidden');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                // Update active nav link
+                navLinks.forEach(link => {
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('text-primary');
+                        link.classList.remove('text-gray-700');
+                    } else {
+                        link.classList.remove('text-primary');
+                        link.classList.add('text-gray-700');
+                    }
+                });
+            }
+
+            /**
+             * Renders a single product card.
+             * @param {object} product - The product object.
+             * @returns {string} - The HTML string for the product card.
+             */
+            function createProductCard(product) {
+                return `
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 transform hover:scale-105">
+                        <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-50 object-cover">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <span class="text-sm text-gray-500 mb-1">${product.category}</span>
+                            <h3 class="text-lg font-semibold text-secondary mb-2 truncate">${product.name}</h3>
+                            <p class="text-xl font-bold text-primary mb-4 mt-auto">₹${product.price.toFixed(2)}</p>
+                            <button class="w-full bg-primary text-white font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-all duration-300 add-to-cart-btn" data-product-id="${product.id}">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            /**
+             * Renders all products to the products grid.
+             */
+            function renderAllProducts() {
+                if (productsGrid) {
+                    productsGrid.innerHTML = products.map(createProductCard).join('');
+                }
+            }
+
+            /**
+             * Renders featured products (first 4) to the home page.
+             */
+            function renderFeaturedProducts() {
+                if (featuredProductsGrid) {
+                    const featured = products.slice(0, 4); // Get first 4 products
+                    featuredProductsGrid.innerHTML = featured.map(createProductCard).join('');
+                }
+            }
+            
+            /**
+             * Adds a product to the cart or increments its quantity.
+             * @param {string} productId - The ID of the product to add.
+             */
+            function addToCart(productId) {
+                const product = products.find(p => p.id.toString() === productId);
+                if (!product) return;
+
+                const existingCartItem = cart.find(item => item.id.toString() === productId);
+
+                if (existingCartItem) {
+                    existingCartItem.quantity++;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+
+                updateCart();
+                showToast(`${product.name} added to cart!`);
+            }
+
+            /**
+             * Removes a product from the cart.
+             * @param {string} productId - The ID of the product to remove.
+             */
+            function removeFromCart(productId) {
+                cart = cart.filter(item => item.id.toString() !== productId);
+                updateCart();
+                showToast(`Item removed from cart.`);
+            }
+
+            /**
+             * Updates the cart quantity for an item.
+             * @param {string} productId - The ID of the product to update.
+             * @param {number} quantity - The new quantity.
+             */
+            function updateCartQuantity(productId, quantity) {
+                const cartItem = cart.find(item => item.id.toString() === productId);
+                if (!cartItem) return;
+
+                if (quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    cartItem.quantity = quantity;
+                    updateCart();
+                }
+            }
+
+
+            /**
+             * Updates the cart UI (count, items, total).
+             */
+            function updateCart() {
+                renderCartItems();
+                updateCartCount();
+                updateCartTotals();
+            }
+
+            /**
+             * Renders the items currently in the cart.
+             */
+            function renderCartItems() {
+                // *** FIX: Check if elements exist before using them ***
+                if (!cartItemsContainer || !emptyCartMessage) return;
+                
+                if (cart.length === 0) {
+                    emptyCartMessage.style.display = 'block';
+                    cartItemsContainer.innerHTML = '';
+                    // cartItemsContainer.appendChild(emptyCartMessage); // This was causing a bug, message is separate
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    cartItemsContainer.innerHTML = cart.map(item => `
+                        <div class="flex items-center space-x-4 py-4 border-b last:border-b-0">
+                            <img src="${item.imageUrl}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+                            <div class="flex-grow">
+                                <h4 class="text-lg font-semibold text-secondary">${item.name}</h4>
+                                <p class="text-gray-500 text-sm">Price: ₹${item.price.toFixed(2)}</p>
+                                <button class="text-red-500 hover:text-red-700 text-sm font-medium remove-from-cart-btn" data-product-id="${item.id}">Remove</button>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label for="qty-${item.id}" class="sr-only">Quantity</label>
+                                <input type="number" id="qty-${item.id}" value="${item.quantity}" min="1" class="w-16 px-2 py-1 border border-gray-300 rounded-md text-center cart-item-qty" data-product-id="${item.id}">
+                            </div>
+                            <div class="text-lg font-semibold text-secondary w-24 text-right">
+                                ₹${(item.price * item.quantity).toFixed(2)}
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            /**
+             * Updates the cart count bubble in the navigation.
+             */
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                
+                // *** FIX: Check if elements exist ***
+                if (cartCountBubble && mobileCartCount) {
+                    if (totalItems > 0) {
+                        cartCountBubble.textContent = totalItems;
+                        cartCountBubble.classList.remove('hidden');
+                        mobileCartCount.textContent = totalItems;
+                    } else {
+                        cartCountBubble.classList.add('hidden');
+                        mobileCartCount.textContent = '0';
+                    }
+                }
+            }
+
+            /**
+             * Calculates and displays the cart subtotal and total.
+             */
+            function updateCartTotals() {
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                // In a real app, taxes and shipping would be calculated.
+                const total = subtotal; // For now, total is just subtotal.
+
+                // *** FIX: Check if elements exist ***
+                if (cartSubtotalEl && cartTotalEl && buyNowButton) {
+                    cartSubtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+                    cartTotalEl.textContent = `₹${total.toFixed(2)}`;
+
+                    // Enable/disable buy now button
+                    if (total > 0) {
+                        buyNowButton.disabled = false;
+                    } else {
+                        buyNowButton.disabled = true;
+                    }
+                }
+            }
+
+            /**
+             * Shows a brief toast notification.
+             * @param {string} message - The message to display.
+             */
+            function showToast(message) {
+                if (toastNotification) {
+                    toastNotification.textContent = message;
+                    toastNotification.classList.remove('opacity-0', 'translate-y-20');
+
+                    setTimeout(() => {
+                        toastNotification.classList.add('opacity-0', 'translate-y-20');
+                    }, 3000); // Hide after 3 seconds
+                }
+            }
+
+
+            // =================================================================
+            // === VALIDATION FUNCTION UPDATED ===
+            // This function now uses MapmyIndia's API instead of Radar.
+            // =================================================================
+            /**
+             * Validates the checkout form using MapmyIndia API for address validation.
+             * @returns {Promise<boolean>} - True if valid, false otherwise.
+             */
+            async function validateCheckoutForm() {
+                // Clear previous errors
+                clearValidationErrors();
+
+                const name = document.getElementById('checkout-name').value.trim();
+                const address = document.getElementById('checkout-address').value.trim();
+                const city = document.getElementById('checkout-city').value.trim();
+                const zip = document.getElementById('checkout-zip').value.trim();
+                const state = document.getElementById('checkout-state').value.trim();
+
+                let isValid = true;
+
+                // Basic client-side validation
+                if (!name) {
+                    document.getElementById('name-error').textContent = 'Full name is required.';
+                    document.getElementById('name-error').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!address) {
+                    document.getElementById('address-error').textContent = 'Street address is required.';
+                    document.getElementById('address-error').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!city) {
+                    document.getElementById('city-error').textContent = 'City is required.';
+                    document.getElementById('city-error').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                // ** CHANGED **: Updated regex and error message for 6-digit PIN
+                if (!zip || !/^\d{6}$/.test(zip)) {
+                    document.getElementById('zip-error').textContent = 'A valid 6-digit PIN code is required.';
+                    document.getElementById('zip-error').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!state) {
+                    document.getElementById('state-error').textContent = 'State is required.';
+                    document.getElementById('state-error').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!isValid) return false;
+
+                // ** REMOVED **: Old Radar API validation block.
+                
+                // ** ADDED **: If basic validation passes, validate address with MapmyIndia API
+                try {
+                    const fullAddress = `${address}, ${city}, ${state} ${zip}`;
+                    const response = await fetch(`https://atlas.mapmyindia.com/api/places/geocode?address=${encodeURIComponent(fullAddress)}&key=${MAPMYINDIA_API_KEY}`);
+
+                    if (!response.ok) {
+                         throw new Error(`API request failed with status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    // MapmyIndia returns a 'copResults' object.
+                    // A successful geocode will have a confidenceScore.
+                    // We'll check if we got any results and if the confidence is high.
+                    // You can adjust the 0.5 threshold to be stricter if needed.
+                    if (data.copResults && (data.copResults.confidenceScore > 0.5)) { 
+                        // Address is considered valid
+                        console.log('Address validated successfully:', data.copResults);
+                        
+                        // --- OPTIONAL: Auto-fill fields based on API response ---
+                        // You could uncomment this to auto-correct user input
+                        /*
+                        document.getElementById('checkout-address').value = data.copResults.formattedAddress || address;
+                        document.getElementById('checkout-city').value = data.copResults.city || city;
+                        document.getElementById('checkout-zip').value = data.copResults.pincode || zip;
+                        document.getElementById('checkout-state').value = data.copResults.state || state;
+                        */
+                        
+                        return true;
+                    } else {
+                        // Address not found or confidence is too low
+                        console.warn('Address validation failed or confidence low:', data);
+                        apiErrorEl.textContent = 'Address could not be verified. Please check your details.';
+                        apiErrorEl.classList.remove('hidden');
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('Address validation error:', error);
+                    // Handle API key error
+                    if (error.message.includes("403")) {
+                         apiErrorEl.textContent = 'Invalid API key. Please contact support.';
+                    } else {
+                         apiErrorEl.textContent = 'Unable to validate address at this time. Please try again.';
+                    }
+                    apiErrorEl.classList.remove('hidden');
+                    return false;
+                }
+            }
+
+            /**
+             * Clears all validation error messages.
+             */
+            function clearValidationErrors() {
+                const errors = ['name-error', 'address-error', 'city-error', 'zip-error', 'state-error', 'api-error'];
+                errors.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.classList.add('hidden');
+                        el.textContent = '';
+                    }
+                });
+            }
+
+            
+
+            // --- NEW PAYMENT MODAL FUNCTIONS ---
+
+            /**
+             * Starts the payment process.
+             * @param {number} totalAmount - The amount to be paid.
+             */
+            function startPaymentProcess(totalAmount) {
+                console.log("Starting payment for ₹", totalAmount.toFixed(2));
+                
+                // Configure and show the payment modal
+                paymentModal.classList.remove('hidden');
+                paymentAmountDisplay.textContent = `₹${totalAmount.toFixed(2)}`;
+                
+                // Generate a placeholder QR code with the amount
+                // This uses a free QR server API
+                const qrData = `upi://pay?pa=digifashion@upi&pn=DigiFashionEcomm&am=${totalAmount.toFixed(2)}&cu=INR`;
+                // qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+                
+                // --- FIX: Use a reliable placeholder to ensure an image always appears ---
+                // The w-52/h-52 classes are 13rem = 208px
+                qrCodeImage.src = `https://placehold.co/208x208/eeeeee/333333?text=QR+Code+Placeholder`;
+                console.log("QR Data (for testing):", qrData);
+                // --- END FIX ---
+                
+                // Start the 2-minute timer
+                startPaymentTimer(120); // 120 seconds = 2 minutes
+            }
+
+            /**
+             * Starts the countdown timer.
+             * @param {number} durationInSeconds - The total duration for the timer.
+             */
+            function startPaymentTimer(durationInSeconds) {
+                if (paymentTimerInterval) {
+                    clearInterval(paymentTimerInterval);
+                }
+
+                let timer = durationInSeconds;
+
+                paymentTimerInterval = setInterval(() => {
+                    let minutes = parseInt(timer / 60, 10);
+                    let seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    if (paymentTimerEl) paymentTimerEl.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        // Timer expired
+                        clearInterval(paymentTimerInterval);
+                        if (paymentModal) paymentModal.classList.add('hidden');
+                        showToast("Payment timer expired. Please try again.");
+                        showPage('cart'); // Send user back to cart
+                    }
+                }, 1000);
+            }
+
+            /**
+             * Finalizes the order after "I have paid" is clicked.
+             */
+            function completeOrder() {
+                console.log("Payment confirmed by user.");
+                
+                if (paymentTimerInterval) {
+                    clearInterval(paymentTimerInterval);
+                }
+                
+                if (paymentModal) paymentModal.classList.add('hidden');
+                
+                // Simulate order processing delay
+                setTimeout(() => {
+                    showToast("Order placed successfully! Thank you!");
+                    cart = [];
+                    updateCart(); // Updates UI (count, items, total)
+                    if (checkoutForm) checkoutForm.reset();
+                    showPage('home');
+                }, 500); // Short delay to feel real
+            }
+
+            /**
+             * Cancels the payment and returns to the cart.
+             */
+            function cancelPayment() {
+                console.log("Payment cancelled by user.");
+                
+                if (paymentTimerInterval) {
+                    clearInterval(paymentTimerInterval);
+                }
+                
+                if (paymentModal) paymentModal.classList.add('hidden');
+                showToast("Payment cancelled.");
+                showPage('cart'); // Send user back to cart
+            }
+
+            // --- END NEW PAYMENT MODAL FUNCTIONS ---
+
+
+            // --- EVENT LISTENERS ---
+
+            // Navigation Handling
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.dataset.page;
+                    const scrollTo = link.dataset.scrollto;
+
+                    showPage(page);
+
+                    if (scrollTo) {
+                        document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // "Add to Cart" Button Clicks (using event delegation)
+            document.body.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    const productId = e.target.dataset.productId;
+                    addToCart(productId);
+                }
+            });
+
+            // "Remove from Cart" & Quantity Change (using event delegation)
+            // *** FIX: Check if cartItemsContainer exists before adding listener ***
+            if (cartItemsContainer) {
+                cartItemsContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-from-cart-btn')) {
+                        const productId = e.target.dataset.productId;
+                        removeFromCart(productId);
+                    }
+                });
+
+                cartItemsContainer.addEventListener('change', (e) => {
+                    if (e.target.classList.contains('cart-item-qty')) {
+                        const productId = e.target.dataset.productId;
+                        const quantity = parseInt(e.target.value, 10);
+                        updateCartQuantity(productId, quantity);
+                    }
+                });
+            }
+
+            // Contact Form Submission
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // In a real app, you'd send this data to a server.
+                    // For now, just show a success message.
+                    showToast("Message sent! We'll get back to you soon.");
+                    contactForm.reset();
+                });
+            }
+
+            // --- FIX: ADDED MISSING EVENT LISTENERS (and element checks) ---
+
+            // "Proceed to Buy" button click (opens checkout modal)
+            if (buyNowButton) {
+                buyNowButton.addEventListener('click', () => {
+                    // Open the checkout modal
+                    if (checkoutModal) checkoutModal.classList.remove('hidden');
+                    // Clear any previous errors
+                    clearValidationErrors();
+                });
+            }
+
+            // "Close" button on checkout modal
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', () => {
+                    if (checkoutModal) checkoutModal.classList.add('hidden');
+                });
+            }
+            // --- END FIX ---
+
+            // "Place Order" Button - MODIFIED to open payment modal
+            if (placeOrderButton) {
+                placeOrderButton.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    
+                    // --- Add Loading State ---
+                    const originalButtonText = placeOrderButton.textContent;
+                    placeOrderButton.textContent = "Validating Address...";
+                    placeOrderButton.disabled = true;
+
+                    const isValid = await validateCheckoutForm();
+                    
+                    if (isValid) {
+                        // Form is valid,
+                        // **NEW FLOW**: Don't place order yet, show payment modal.
+                        
+                        // 1. Close address modal
+                        if (checkoutModal) checkoutModal.classList.add('hidden');
+                        
+                        // 2. Get the total
+                        const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+                        // 3. Start the payment process
+                        startPaymentProcess(totalAmount);
+
+                    } else {
+                        // Form is invalid, validation messages are already shown
+                        console.log("Checkout form is invalid.");
+                    }
+
+                    // --- Restore Button State ---
+                    placeOrderButton.textContent = originalButtonText;
+                    placeOrderButton.disabled = false;
+                });
+            }
+            // --- END NEW MODAL/CHECKOUT LISTENERS ---
+
+            // --- NEW PAYMENT MODAL LISTENERS ---
+            if (paymentCompleteButton) {
+                paymentCompleteButton.addEventListener('click', completeOrder);
+            }
+
+            if (paymentCancelButton) {
+                paymentCancelButton.addEventListener('click', cancelPayment);
+            }
+            // --- END NEW PAYMENT MODAL LISTENERS ---
+
+
+            // --- INITIALIZATION ---
+            feather.replace(); // Initialize Feather Icons
+            document.getElementById('current-year').textContent = new Date().getFullYear(); // Set current year in footer
+            renderAllProducts();
+            renderFeaturedProducts();
+            showPage('home'); // Show home page by default
+            updateCart(); // Initialize cart view (empty)
+        });
+    </script>
+
+</body>
+</html>
