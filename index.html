@@ -987,11 +987,11 @@
                 // Generate a placeholder QR code with the amount
                 // This uses a free QR server API
                 const qrData = `upi://pay?pa=digifashion@upi&pn=DigiFashionEcomm&am=${totalAmount.toFixed(2)}&cu=INR`;
-                // qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+                // qrCodeImage.src = `logo.png`;
                 
                 // --- FIX: Use a reliable placeholder to ensure an image always appears ---
                 // The w-52/h-52 classes are 13rem = 208px
-                qrCodeImage.src = `https://placehold.co/208x208/eeeeee/333333?text=QR+Code+Placeholder`;
+                qrCodeImage.src = `QRCode.jpeg`;
                 console.log("QR Data (for testing):", qrData);
                 // --- END FIX ---
                 
