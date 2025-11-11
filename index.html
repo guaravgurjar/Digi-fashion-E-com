@@ -415,13 +415,13 @@
 
             // =================================================================
             // === API KEY CHANGED ===
-            // Removed Radar API Key
-            // Added MapmyIndia API Key Placeholder
+            // Removed MapmyIndia API Key
+            // Added Google Address Validation API Key Placeholder
             //
-            // 🔴 IMPORTANT: Replace 'YOUR_MAPMYINDIA_API_KEY' with your actual key
-            // You can get one from https://www.mapmyindia.com/api/
+            // 🔴 IMPORTANT: Replace 'YOUR_GOOGLE_API_KEY' with your actual key
+            // You can get one from https://console.cloud.google.com/apis/credentials
             // =================================================================
-            const MAPMYINDIA_API_KEY = 'YOUR_MAPMYINDIA_API_KEY'; // <-- IMPORTANT: Replace with your actual key!
+            const GOOGLE_API_KEY = 'AIzaSyDGDyHDhYVKLATO5017z3vR9h7wpBeGpOA'; // <-- IMPORTANT: Replace with your actual key!
             
             // --- MOCK PRODUCT DATA (Prices updated to INR) ---
             const products = [
@@ -849,122 +849,125 @@
 
             // =================================================================
             // === VALIDATION FUNCTION UPDATED ===
-            // This function now uses MapmyIndia's API instead of Radar.
+            // This function now uses Google's Address Validation API.
             // =================================================================
             /**
-             * Validates the checkout form using MapmyIndia API for address validation.
-             * @returns {Promise<boolean>} - True if valid, false otherwise.
-             */
-            async function validateCheckoutForm() {
-                // Clear previous errors
-                clearValidationErrors();
+             Validates the checkout form using Google's Address Validation API.
+         * @returns {Promise<boolean>} - True if valid, false otherwise.
+         */
+        async function validateCheckoutForm() {
+            // Clear previous errors
+            clearValidationErrors();
 
-                const name = document.getElementById('checkout-name').value.trim();
-                const address = document.getElementById('checkout-address').value.trim();
-                const city = document.getElementById('checkout-city').value.trim();
-                const zip = document.getElementById('checkout-zip').value.trim();
-                const state = document.getElementById('checkout-state').value.trim();
+            const name = document.getElementById('checkout-name').value.trim();
+            const address = document.getElementById('checkout-address').value.trim();
+            const city = document.getElementById('checkout-city').value.trim();
+            const zip = document.getElementById('checkout-zip').value.trim();
+            const state = document.getElementById('checkout-state').value.trim();
 
-                let isValid = true;
+            // --- FIX #2: You were missing this line ---
+            // This gets the <div> to show API errors
+            const apiErrorEl = document.getElementById('api-error');
 
-                // Basic client-side validation
-                if (!name) {
-                    document.getElementById('name-error').textContent = 'Full name is required.';
-                    document.getElementById('name-error').classList.remove('hidden');
-                    isValid = false;
+            let isValid = true;
+
+            // Basic client-side validation
+            if (!name) {
+                document.getElementById('name-error').textContent = 'Full name is required.';
+                document.getElementById('name-error').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!address) {
+                document.getElementById('address-error').textContent = 'Street address is required.';
+                document.getElementById('address-error').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!city) {
+                document.getElementById('city-error').textContent = 'City is required.';
+                document.getElementById('city-error').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!zip || !/^\d{6}$/.test(zip)) {
+                document.getElementById('zip-error').textContent = 'A valid 6-digit PIN code is required.';
+                document.getElementById('zip-error').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!state) {
+                document.getElementById('state-error').textContent = 'State is required.';
+                document.getElementById('state-error').classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) return false;
+
+            // If basic validation passes, validate address with Google API
+            try {
+                const fullAddress = `${address}, ${city}, ${state} ${zip}`;
+                // This is CORRECT
+                const response = await fetch(`https://addressvalidation.googleapis.com/v1:validateAddress?key=${GOOGLE_API_KEY}`,  {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        address: {
+                            regionCode: 'IN',
+                            addressLines: [fullAddress]
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status: ${response.status}`);
                 }
 
-                if (!address) {
-                    document.getElementById('address-error').textContent = 'Street address is required.';
-                    document.getElementById('address-error').classList.remove('hidden');
-                    isValid = false;
-                }
+                const data = await response.json();
 
-                if (!city) {
-                    document.getElementById('city-error').textContent = 'City is required.';
-                    document.getElementById('city-error').classList.remove('hidden');
-                    isValid = false;
-                }
-
-                // ** CHANGED **: Updated regex and error message for 6-digit PIN
-                if (!zip || !/^\d{6}$/.test(zip)) {
-                    document.getElementById('zip-error').textContent = 'A valid 6-digit PIN code is required.';
-                    document.getElementById('zip-error').classList.remove('hidden');
-                    isValid = false;
-                }
-
-                if (!state) {
-                    document.getElementById('state-error').textContent = 'State is required.';
-                    document.getElementById('state-error').classList.remove('hidden');
-                    isValid = false;
-                }
-
-                if (!isValid) return false;
-
-                // ** REMOVED **: Old Radar API validation block.
-                
-                // ** ADDED **: If basic validation passes, validate address with MapmyIndia API
-                try {
-                    const fullAddress = `${address}, ${city}, ${state} ${zip}`;
-                    const response = await fetch(`https://atlas.mapmyindia.com/api/places/geocode?address=${encodeURIComponent(fullAddress)}&key=${MAPMYINDIA_API_KEY}`);
-
-                    if (!response.ok) {
-                         throw new Error(`API request failed with status: ${response.status}`);
-                    }
-
-                    const data = await response.json();
-
-                    // MapmyIndia returns a 'copResults' object.
-                    // A successful geocode will have a confidenceScore.
-                    // We'll check if we got any results and if the confidence is high.
-                    // You can adjust the 0.5 threshold to be stricter if needed.
-                    if (data.copResults && (data.copResults.confidenceScore > 0.5)) { 
-                        // Address is considered valid
-                        console.log('Address validated successfully:', data.copResults);
-                        
-                        // --- OPTIONAL: Auto-fill fields based on API response ---
-                        // You could uncomment this to auto-correct user input
-                        /*
-                        document.getElementById('checkout-address').value = data.copResults.formattedAddress || address;
-                        document.getElementById('checkout-city').value = data.copResults.city || city;
-                        document.getElementById('checkout-zip').value = data.copResults.pincode || zip;
-                        document.getElementById('checkout-state').value = data.copResults.state || state;
-                        */
-                        
+                if (data.result && data.result.verdict && data.result.verdict.geocodeGranularity) {
+                    const granularity = data.result.verdict.geocodeGranularity;
+                    
+                    // --- FIX #3: Updated logic for delivery ---
+                    // 'PREMISE' (exact house number), 'SUB_PREMISE' (apt), or 'PREMISE_PROXIMITY' (close to premise) are valid for delivery.
+                    // 'ROUTE' (just the street) is not good enough.
+                    if (granularity === 'PREMISE' || granularity === 'SUB_PREMISE' || granularity === 'PREMISE_PROXIMITY') {
+                        console.log('Address validated successfully:', data.result);
                         return true;
                     } else {
-                        // Address not found or confidence is too low
-                        console.warn('Address validation failed or confidence low:', data);
-                        apiErrorEl.textContent = 'Address could not be verified. Please check your details.';
+                        console.warn('Address validation failed - low granularity:', granularity);
+                        apiErrorEl.textContent = 'Address could not be verified. Please check the house/apartment number.';
                         apiErrorEl.classList.remove('hidden');
                         return false;
                     }
-                } catch (error) {
-                    console.error('Address validation error:', error);
-                    // Handle API key error
-                    if (error.message.includes("403")) {
-                         apiErrorEl.textContent = 'Invalid API key. Please contact support.';
-                    } else {
-                         apiErrorEl.textContent = 'Unable to validate address at this time. Please try again.';
-                    }
+                } else {
+                    console.warn('Address validation failed:', data);
+                    apiErrorEl.textContent = 'Address could not be verified. Please check your details.';
                     apiErrorEl.classList.remove('hidden');
                     return false;
                 }
+            } catch (error) {
+                console.error('Address validation error:', error);
+                if (error.message.includes("403")) {
+                    apiErrorEl.textContent = 'Invalid API key. Check your key.';
+                } else {
+                    apiErrorEl.textContent = 'Failed';
+                }
+                apiErrorEl.classList.remove('hidden');
+                return false;
             }
+        }
 
-            /**
-             * Clears all validation error messages.
-             */
-            function clearValidationErrors() {
-                const errors = ['name-error', 'address-error', 'city-error', 'zip-error', 'state-error', 'api-error'];
-                errors.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        el.classList.add('hidden');
-                        el.textContent = '';
-                    }
-                });
-            }
+        /**
+         * Clears all validation error messages.
+         */
+        function clearValidationErrors() {
+            const errors = ['name-error', 'address-error', 'city-error', 'zip-error', 'state-error', 'api-error'];
+            errors.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.add('hidden');
+                    el.textContent = '';
+                }
+            });
+        }
+
 
             
 
